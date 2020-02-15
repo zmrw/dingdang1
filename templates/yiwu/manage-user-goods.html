@@ -1,0 +1,52 @@
+{% extends 'main-base.html' %}
+{% load static %}
+{% block main %}
+    <div class="page-inner">
+        <div class="page-title">
+            <h3 class="breadcrumb-header">所有产品</h3>
+        </div>
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>图片</th>
+                                <th>商品名称</th>
+                                <th>商品价格</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for post in posts %}
+                                <tr>
+                                    <td>
+                                        <img src="/static/usersimg/{{ post.author.id }}/{{ post.image_set.all.first.name }}"
+                                             width="80px">
+                                    </td>
+                                    <td>{{ post.title }}</td>
+                                    <td>{{ post.price }}</td>
+                                    <td><a href="/changegoods/{{ post.id }}"
+                                       class="btn btn-primary">修改</a></td>
+                                    <td><a href="/delgoods/{{ post.id }}"
+                                       class="btn btn-primary">删除</a></td>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+                            {% empty %}
+                                <div class="no-post">暂时还没有添加商品！</div>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div><!-- Row -->
+        </div><!-- Main Wrapper -->
+        <div class="page-footer">
+            <p>Copyright &copy; 2018.Company name All rights reserved.
+            </p>
+        </div>
+    </div>
+{% endblock main %}

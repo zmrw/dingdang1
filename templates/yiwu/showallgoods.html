@@ -1,0 +1,70 @@
+{% extends 'main-base.html' %}
+{% load static %}
+{% block main %}
+    <div class="page-inner">
+        <div class="page-title">
+            <h3 class="breadcrumb-header">Gallery</h3>
+        </div>
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-white">
+                        <div class="panel-body">
+                            <div id="grid-gallery" class="grid-gallery">
+                                <section class="grid-wrap">
+                                    <ul class="grid">
+                                        {% for post in posts %}
+                                            <li>
+                                                <figure>
+                                                    <img src="/static/usersimg/{{ post.author.id }}/{{ post.image_set.all.first.name }}"
+                                                    />
+                                                    <figcaption><h3>{{ post.title }}</h3>
+                                                        <p>价格：{{ post.price }}</p>
+                                                        <p>作者：{{ post.author }}</p>
+                                                        <p>{{ post.body }}</p></figcaption>
+                                                </figure>
+                                            </li>
+                                        {% empty %}
+                                            <div class="no-post">暂时还没有添加商品！</div>
+                                        {% endfor %}
+                                    </ul>
+                                </section>
+                                <section class="slideshow">
+                                    <ul>
+                                        {% for post in posts %}
+                                            <li class="aaaimg">
+                                                <figure>
+                                                    <figcaption>
+                                                        <h3>{{ post.title }}</h3>
+                                                        <p>{{ post.body }}</p>
+                                                        <p>{{ post.price }}</p>
+                                                        <p>{{ post.author }}</p>
+                                                    </figcaption>
+                                                    {% for img in post.image_set.all %}
+                                                        <img src="/static/usersimg/{{ post.author.id }}/{{ img.name }}"
+                                                        />
+                                                    {% endfor %}
+                                                </figure>
+                                            </li>
+                                        {% empty %}
+                                            <div class="no-post">暂时还没有添加域名！</div>
+                                        {% endfor %}
+                                    </ul>
+                                    <nav>
+                                        <span class="fa fa-angle-left nav-prev"></span>
+                                        <span class="fa fa-angle-right nav-next"></span>
+                                        <span class="icon-close nav-close"></span>
+                                    </nav>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Row -->
+        </div><!-- Main Wrapper -->
+        <div class="page-footer">
+            <p>Copyright &copy; 2018.Company name All rights reserved.
+            </p>
+        </div>
+    </div>
+{% endblock main %}

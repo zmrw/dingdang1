@@ -1,0 +1,101 @@
+{% extends 'main-base.html' %}
+{% load static %}
+{% block main %}
+    <div class="page-inner">
+        <div class="page-title">
+            <h3 class="breadcrumb-header">修改产品</h3>
+        </div>
+        <div id="main-wrapper">
+            <div class="col-md-6">
+                <div class="panel panel-white">
+                    <div class="panel-heading clearfix">
+                        <h4 class="panel-title">修改产品</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form enctype="multipart/form-data" action="/changegoods/{{ id }}/" method="post">
+                            <form class="form-horizontal">
+                                {% if message1 %}
+                                    <div class="alert alert-warning">{{ message1 }}</div>
+                                {% endif %}
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">商品名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="商品名称" name="title"
+                                               value="{{ oldtitle }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">商品介绍</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="商品介绍" name="body" value="{{ oldbody }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">商品价格</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="商品价格" name="price" value="{{ oldprice }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">商品分类</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="商品分类" name="category" value="{{ oldcat.name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">商品图片</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" name="img"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-success"
+                                                style="margin-top:10px;margin-bottom:-14px;">提交
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-white">
+                        <div class="panel-heading clearfix">
+                            <h4 class="panel-title">Dropzone</h4>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/upload-target" class="dropzone"></form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-white">
+                        <div class="panel-heading clearfix">
+                            <h4 class="panel-title">Plupload</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div id="uploader">
+                                <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="page-footer">
+            <p>Copyright &copy; 2018.Company name All rights reserved.</p>
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+{% endblock main %}
